@@ -17,19 +17,19 @@ export function Pagination({ pageIndex, perPage, totalCount }: PaginationProps) 
             <div className="flex items-center gap-6 lg:gap-8">
                 <div className="flex text-sm font-medium">Página {pageIndex + 1} de {pages}</div>
                 <div className="flex items-center gap-2">
-                    <Button variant='outline' className="h-8 w-8 p-8">
-                       <ChevronsLeft className="h-4 w-4"/> 
+                    <Button variant='outline' className="h-8 w-8 p-6">
+                       <ChevronsLeft className="h-3 w-4"/> 
                        <span className="sr-only">Primeira página</span>
                     </Button>
-                    <Button variant='outline' className="h-8 w-8 p-8">
+                    <Button variant='outline' className="h-8 w-8 p-6">
                        <ChevronLeft className="h-4 w-4"/> 
                        <span className="sr-only">Página Anterior</span>
                     </Button>
-                    <Button variant='outline' className="h-8 w-8 p-8">
+                    <Button variant='outline' className="h-8 w-8 p-6">
                        <ChevronRight className="h-4 w-4"/> 
                        <span className="sr-only">Próxima página</span>
                     </Button>
-                    <Button variant='outline' className="h-8 w-8 p-8">
+                    <Button variant='outline' className="h-8 w-8 p-6">
                        <ChevronsRight className="h-4 w-4"/> 
                        <span className="sr-only">Última página</span>
                     </Button>
