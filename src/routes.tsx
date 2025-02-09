@@ -5,22 +5,27 @@ import AuthLayout from "./pages/_layouts/auth";
 import AppLayout from "./pages/_layouts/app";
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Toaster } from 'sonner'
+import SignUp from './pages/auth/sing-up';
+import { ThemeProvider } from './components/theme/theme-provider';
 
 
 export default function Routers() {
     return (
         <HelmetProvider>
-            <Helmet titleTemplate="%s | pizza.shop"/>
-            <Toaster richColors />
-            <Routes>
-                <Route element={<AppLayout />}>            
-                    <Route path="/" element={<Dashboard />} />
-                </Route>
+            <ThemeProvider storageKey="pizzashop-theme" defaultTheme="dark">
+                <Helmet titleTemplate="%s | pizza.shop"/>
+                <Toaster richColors />
+                <Routes>
+                    <Route element={<AppLayout />}>            
+                        <Route path="/" element={<Dashboard />} />
+                    </Route>
 
-                <Route element={<AuthLayout />}>
-                    <Route path="/sign-in" element={<SingIn />} />
-                </Route>
-            </Routes>
+                    <Route element={<AuthLayout />}>
+                        <Route path="/sign-in" element={<SingIn />} />
+                        <Route path="/sign-up" element={<SignUp />} />
+                    </Route>
+                </Routes>
+            </ThemeProvider>
         </HelmetProvider>
     )
 }
