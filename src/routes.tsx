@@ -7,6 +7,7 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { Toaster } from 'sonner'
 import SignUp from './pages/auth/sing-up';
 import { ThemeProvider } from './components/theme/theme-provider';
+import { Orders } from "./pages/app/orders/orders";
 
 
 export default function Routers() {
@@ -18,6 +19,7 @@ export default function Routers() {
                 <Routes>
                     <Route element={<AppLayout />}>            
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/orders" element={<Orders />} />
                     </Route>
 
                     <Route element={<AuthLayout />}>
