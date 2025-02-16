@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-import Dashboard from "./pages/app/dashboard";
 import SingIn from "./pages/auth/sing-in";
 import AuthLayout from "./pages/_layouts/auth";
 import AppLayout from "./pages/_layouts/app";
@@ -8,6 +7,7 @@ import { Toaster } from 'sonner'
 import SignUp from './pages/auth/sing-up';
 import { ThemeProvider } from './components/theme/theme-provider';
 import { Orders } from "./pages/app/orders/orders";
+import Dashboard from "./pages/app/dashboard/dashboard";
 
 
 export default function Routers() {
@@ -17,7 +17,7 @@ export default function Routers() {
                 <Helmet titleTemplate="%s | pizza.shop"/>
                 <Toaster richColors />
                 <Routes>
-                    <Route element={<AppLayout />}>            
+                    <Route element={<AppLayout />}>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/orders" element={<Orders />} />
                     </Route>
