@@ -8,6 +8,7 @@ import SignUp from './pages/auth/sing-up';
 import { ThemeProvider } from './components/theme/theme-provider';
 import { Orders } from "./pages/app/orders/orders";
 import Dashboard from "./pages/app/dashboard/dashboard";
+import { NotFound } from "./pages/400";
 
 
 export default function Routers() {
@@ -17,15 +18,18 @@ export default function Routers() {
                 <Helmet titleTemplate="%s | pizza.shop"/>
                 <Toaster richColors />
                 <Routes>
-                    <Route element={<AppLayout />}>
-                        <Route path="/" element={<Dashboard />} />
+                    <Route element={<AppLayout />} >
+                        <Route path="/" element={<Dashboard />}/>
                         <Route path="/orders" element={<Orders />} />
                     </Route>
+                        
 
                     <Route element={<AuthLayout />}>
                         <Route path="/sign-in" element={<SingIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
                     </Route>
+                    
+                    <Route path="/*" element={<NotFound />} />
                 </Routes>
             </ThemeProvider>
         </HelmetProvider>
