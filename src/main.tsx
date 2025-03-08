@@ -3,9 +3,8 @@ import { BrowserRouter} from "react-router";
 import Routers from './routes';
 import "./assets/global.css"
 
-const root = document.getElementById("root")!;
-
-ReactDOM.createRoot(root).render(
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routers />
   </BrowserRouter>
