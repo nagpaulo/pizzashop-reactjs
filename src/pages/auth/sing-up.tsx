@@ -1,11 +1,13 @@
-import { Helmet } from 'react-helmet-async';
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form'
-import {string, z} from 'zod'
-import { toast } from 'sonner'
+import { Label } from '@/components/ui/label';
+import { useMutation } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
+import { toast } from 'sonner';
+import { string, z } from 'zod';
+import { registerRestaurant } from '../../api/register-restaurant';
  
 const SignUpForm = z.object({
     restaurantName: z.string(),
@@ -20,14 +22,23 @@ export default function SignUp() {
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
 
+    const { mutateAsync: resgiterRestaurantFn } = useMutation({
+        mutationFn: registerRestaurant
+    })
+
     async function handleSignUp(data: SignUpForm){
         try {
-            await new Promise((resolve) => setTimeout(resolve, 2000))
+            await resgiterRestaurantFn({
+                restaurantName: data.restaurantName,
+                managerName: data.managerName,
+                phone: data.phone,
+                email: data.email,
+            })
     
             toast.success('Restaurante cadastrado com sucesso!', {
                 action: {
                     label: 'Login',
-                    onClick: () => navigate('/sign-in')
+                    onClick: () => navigate(`/sign-in?email=${data.email}`)
                 }
             })
             
@@ -76,9 +87,11 @@ export default function SignUp() {
                         </Button>
                         <p className='px-6 text-center text-sm leading-relaxed text-muted-foreground'>
                             Ao continuar, você concorda com nosso {' '}
+                            {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
                             <a href='' className='underline underline-offset-4'>
                                 termo de serviço
-                            </a> e {' '} 
+                            </a> e {' '}
+                            {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
                             <a href='' className='underline underline-offset-4'>
                                 politica de privacidade
                             </a>?
